@@ -4,36 +4,26 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import TestApi from './testApi'
 import BarChartComponent from './components/charts/BarChartComponent'
+import PieChartComponent from './components/charts/PieChartComponent'
 import { getSalesByCategory, getProfitMarginByCategory } from "./api/sales";
-import useSaleCat from "./hooks/useSaleCat";
+import useAPI from "./hooks/useAPI";
+import { getChart } from './api/getChart'
 
 
 function App() {
-  const sales = useSaleCat();
-  // const [count, setCount] = useState(0)
-  // const [data, setData] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const json = await getSalesByCategory();
-  //       setData(json);
-  //     } catch (err) {
-  //       setError(err.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+  // const sales = useAPI(() => getChart("total_sales_by_category"));
+  // const profit = useAPI(() => getChart("avg_profit_margin_by_category"));
 
   return (
     // <TestApi/>
-    <BarChartComponent data={sales.data}/>
-  )
+    <>
+      <h1>Dashboard ventas</h1>
+      <PieChartComponent/>
+      {/* <BarChartComponent data={sales.data} loading={sales.loading} error={sales.error} xlabel={"Total sales"} decimals={2} /> */}
+      {/* <BarChartComponent data={profit.data} loading={profit.loading} error={profit.error} xlabel={"Avg profit"} decimals={5}/> */}
+      
+    </>
+  );
 }
 
 export default App

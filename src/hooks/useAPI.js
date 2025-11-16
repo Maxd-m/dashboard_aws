@@ -1,8 +1,8 @@
 // src/hooks/useSalesByCategory.js
 import { useEffect, useState } from "react";
-import { getSalesByCategory } from "../api/sales";
+// import { getSalesByCategory } from "../api/sales";
 
-export default function useSaleCat() {
+export default function useAPI(apiFunc) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ export default function useSaleCat() {
   useEffect(() => {
     const load = async () => {
       try {
-        const result = await getSalesByCategory();
+        const result = await apiFunc();
         setData(result);
       } catch (err) {
         setError(err.message);
@@ -20,7 +20,7 @@ export default function useSaleCat() {
     };
 
     load();
-  }, []);
+  }, [apiFunc]);
 
   return { data, loading, error };
 }
