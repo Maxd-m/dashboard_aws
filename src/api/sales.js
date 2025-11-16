@@ -9,6 +9,7 @@ export const getSalesByCategory = async () => {
       "Content-Type": "application/json"
     },
   });
+  // console.log("API RESPONSE:", response.data);
   return response.data;
 };
 
