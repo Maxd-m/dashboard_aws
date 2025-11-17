@@ -1,13 +1,26 @@
 import { BarChart } from "@mui/x-charts/BarChart";
 // import { useEffect, useState } from "react";
 
-export default function ExampleBarChart({data, loading, error, xlabel, decimals, minY, maxY, tickCount}) {
-  const categories = data.map((item) => item.category);
-
+export default function BarChartComponent({
+  data,
+  loading,
+  error,
+  xlabel,
+  decimals,
+  minY,
+  maxY,
+  tickCount,
+}) {
+  if (!Array.isArray(data) || data.length === 0) {
+    return <div>No data available for chart.</div>;
+  }
+  
   if (!data || data.length === 0) {
     // Optionally return null, an empty div, or a loading/error message
     return <div>No data available for chart.</div>;
   }
+
+  const categories = data.map((item) => item.category);
 
   const numericKey = Object.keys(data[0]).find(
     (key) => key !== "category" && typeof data[0][key] === "number"
@@ -41,55 +54,82 @@ export default function ExampleBarChart({data, loading, error, xlabel, decimals,
 
   const yTicks = generateTicks(finalMin, finalMax, finalTickCount);
 
+  const colorPalette = [
+    "#FF6384",
+    "#36A2EB",
+    "#FFCE56",
+    "#4BC0C0",
+    "#9966FF",
+    "#FF9F40",
+  ];
+
   return (
-    <BarChart
-      layout="horizontal"
-      xAxis={[
-        {
-          scaleType: "band",
-          data: categories,
-        },
-      ]}
-      // margin={{ left: 90 }}
-      yAxis={[
-        {
-          min: finalMin,
-          max: finalMax,
-          // tickCount: finalTickCount,
-          ticks: yTicks,
-          disableTickLabelFormat: true,
-          valueFormatter: (v) => `${v.toFixed(5)}`,
-        },
-      ]}
-      series={[
-        {
-          data: values,
-          label: xlabel,
-          valueFormatter: (value) => value.toFixed(decimals),
-        },
-      ]}
-      width={500}
-      height={300}
-      sx={{
-        "& .MuiChartsAxis-root": {
-          stroke: "white",
-        },
-        "& .MuiChartsAxis-tickLabel": {
-          fill: "white",
-        },
-        "& .MuiChartsAxis-label": {
-          fill: "white",
-        },
-        "& .MuiChartsAxis-line": {
-          stroke: "white",
-        },
-        "& .MuiChartsAxis-tick": {
-          stroke: "black",
-        },
-        "& .MuiChartsAxis-tickLabel": {
-          fontSize: 11, // o 10 o 9
-        },
-      }}
-    />
+    // style={{ width: "30vw", height: "40vh" }}
+    <div className="chart-container">
+      <BarChart
+        // layout="horizontal"
+        xAxis={[
+          {
+            scaleType: "band",
+            data: categories,
+          },
+        ]}
+        // margin={{ left: 90 }}
+        yAxis={[
+          {
+            min: finalMin,
+            max: finalMax,
+            // tickCount: finalTickCount,
+            ticks: yTicks,
+            disableTickLabelFormat: true,
+            valueFormatter: (v) => `${v.toFixed(5)}`,
+          },
+        ]}
+        // series={values.map((value, i) => ({
+        //   data: [value],
+        //   label: categories[i],
+        //   color: colorPalette[i % colorPalette.length],
+        // }))}
+        slotProps={{
+          bar: {
+            label: ({ value }) => value.toFixed(decimals),
+          },
+        }}
+        series={[
+          {
+            data: values,
+            label: xlabel,
+            valueFormatter: (value) => value.toFixed(decimals),
+            color: "#7fcdbb",
+            // colors: values.map((_, i) => colorPalette[i % colorPalette.length]),
+          },
+        ]}
+        // width={"30vw"}
+        // height={"auto"}
+        sx={{
+          "& .MuiChartsAxis-root": {
+            stroke: "white",
+          },
+          "& .MuiChartsAxis-tickLabel": {
+            fill: "white",
+          },
+          "& .MuiChartsAxis-label": {
+            fill: "white",
+          },
+          "& .MuiChartsAxis-line": {
+            stroke: "white",
+          },
+          "& .MuiChartsAxis-tick": {
+            stroke: "white",
+          },
+          "& .MuiChartsAxis-tickLabel": {
+            fontSize: 11, // o 10 o 9
+          },
+          "& .MuiChartsLegend-root": {
+            color: "white !important",
+          },
+        }}
+      />
+    </div>
   );
 }

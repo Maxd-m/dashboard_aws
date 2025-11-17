@@ -21,7 +21,7 @@ El dashboard muestra gráficos dinámicos y actualizados basados en las tablas d
 src/
   api/               → llamadas a la API
   components/        → componentes UI y gráficos
-  pages/             → páginas principales del proyecto
+  hoojs/             → hooks personalizados del proyecto
   App.jsx
   main.jsx
 ```
