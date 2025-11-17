@@ -1,6 +1,7 @@
 # 📊 Dashboard de Visualización de Datos – Big Data (React + AWS)
 
 Este proyecto es un dashboard web construido con React que permite visualizar información procesada mediante un flujo ETL en AWS Glue y almacenada en DynamoDB. El frontend consume una API REST desarrollada con AWS Lambda + API Gateway.
+### [🌐 Demo en vivo](https://aws-sales-dashboard.netlify.app/)
 
 ## 🚀 Características principales
 El dashboard muestra cuatro gráficos solicitados:
