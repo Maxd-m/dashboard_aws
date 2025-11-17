@@ -1,4 +1,4 @@
-import httpClient from "./httpCLient";
+import httpClient from "./httpCLient.js";
 
 export const getSalesByCategory = async () => {
   const body = {
