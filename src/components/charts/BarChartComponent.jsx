@@ -12,16 +12,29 @@ export default function BarChartComponent({
   tickCount,
 }) {
   if (!Array.isArray(data) || data.length === 0) {
-    return <div>No data available for chart.</div>;
+    return <div>Cargando...</div>;
   }
   
   if (!data || data.length === 0) {
     // Optionally return null, an empty div, or a loading/error message
-    return <div>No data available for chart.</div>;
+    return <div>Cargando...</div>;
   }
 
-  const categories = data.map((item) => item.category);
+  // reconocer automaticamente categorias
+  const categoryKey = Object.keys(data[0]).find(
+    (key) =>
+      ["category", "region", "label", "name"].includes(key) &&
+      typeof data[0][key] === "string"
+  );
 
+  if (!categoryKey) {
+    return <div>No category-like field found</div>;
+  }
+
+  const categories = data.map((item) => item[categoryKey]);
+  // const categories = data.map((item) => item.category);
+
+  // reconocer automaticamente valores
   const numericKey = Object.keys(data[0]).find(
     (key) => key !== "category" && typeof data[0][key] === "number"
   );
@@ -121,9 +134,7 @@ export default function BarChartComponent({
           },
           "& .MuiChartsAxis-tick": {
             stroke: "white",
-          },
-          "& .MuiChartsAxis-tickLabel": {
-            fontSize: 11, // o 10 o 9
+            fontSize: 11,
           },
           "& .MuiChartsLegend-root": {
             color: "white !important",

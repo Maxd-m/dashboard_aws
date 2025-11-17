@@ -46,7 +46,13 @@
 import React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 
-export default function StackedBarChart({ data }) {
+export default function StackedBarChart({ data, loading, error }) {
+    if (loading) return <p>Cargando...</p>;
+    if (error) return <p>Error: {error}</p>;
+
+    if (!Array.isArray(data) || data.length === 0) {
+      return <div>No data available for chart.</div>;
+    }
   // Transformar data al formato que acepta BarChart
   const dataset = data.map((region) => {
     const row = { category: region.region };

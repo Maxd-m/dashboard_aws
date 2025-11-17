@@ -6,6 +6,7 @@ export default function PieChartComponent({
   loading,
   error,
   xlabel, // Nombre principal de la serie
+  decimals = 2,
 }) {
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -37,7 +38,8 @@ export default function PieChartComponent({
             type: "pie",
             data: formattedData,
             name: xlabel,
-            arcLabel: (item) => `${item.value}`,
+            arcLabel: (item) => item.value.toFixed(decimals),
+            valueFormatter: ({ value }) => value.toFixed(decimals),
             arcLabelMinAngle: 7,
           },
         ]}

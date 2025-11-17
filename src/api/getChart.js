@@ -4,9 +4,9 @@ export const getChart = async (chartType) => {
   const body = {
     chart: chartType,
   };
-  const response = await httpClient.post("/sales_api", body, {
+  const response = await httpClient.post("/salesLambda", body, {
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
   });
   // console.log("API RESPONSE:", response.data);
