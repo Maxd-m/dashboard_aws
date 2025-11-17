@@ -13,7 +13,7 @@ export default function DashboardModal() {
       <Button
         onClick={handleOpen}
         sx={{
-          background: "rgba(10, 61, 98, 0.4)",
+          background: "rgba(98, 54, 10, 0.72)",
           color: "rgba(207, 214, 218, 0.9)",
           borderRadius: "12px",
           padding: "10px 20px",
@@ -34,7 +34,7 @@ export default function DashboardModal() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            bgcolor: "rgba(10, 61, 98, 0.9)", // fondo estilo card
+            bgcolor: "rgba(98, 54, 10, 0.9)", // fondo estilo card
             color: "#fff",
             boxShadow: 24,
             borderRadius: 2,
@@ -48,7 +48,9 @@ export default function DashboardModal() {
           </Typography>
           <Typography sx={{ mb: 2 }}>
             Ve el codigo{" "}
-            <a href="https://github.com/Maxd-m/dashboard_aws">aqui</a>
+            <a href="https://github.com/Maxd-m/dashboard_aws" target="_blank">
+              aqui
+            </a>
           </Typography>
           <Button
             onClick={handleClose}

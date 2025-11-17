@@ -9,6 +9,7 @@ El dashboard muestra cuatro gráficos solicitados:
 2. Promedio del margen de ganancia por categoría
 3. Cantidad total vendida por región
 4. Top 5 productos más vendidos por región (nueva transformación del ETL)
+5. Ventas totales (categoria x región)
 
 Cada gráfico obtiene sus datos directamente desde la API REST.
 
@@ -22,6 +23,7 @@ src/
   api/               → llamadas a la API
   components/        → componentes UI y gráficos
   hoojs/             → hooks personalizados del proyecto
+  utils/             → funciones auxiliares, lógica compartida y utilidades pura
   App.jsx
   main.jsx
 ```
@@ -30,6 +32,9 @@ src/
 ```
 AWS Glue ETL → DynamoDB → Lambda → API Gateway → React Dashboard
 ```
+## 🖥️ Interfaz
+![Dashboard](./src/assets/image.png)
+
 
 ## 📝 Licencia
 Este proyecto es únicamente con fines educativos.
