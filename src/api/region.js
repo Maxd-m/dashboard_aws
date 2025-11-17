@@ -1,4 +1,4 @@
-import httpClient from "./httpCLient.js";
+import httpClient from "./httpClient.js";
 
 export const getQuantityByRegion = async () => {
   const body = {

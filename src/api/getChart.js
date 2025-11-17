@@ -1,4 +1,4 @@
-import httpClient from "./httpCLient.js";
+import httpClient from "./httpClient.js";
 
 export const getChart = async (chartType) => {
   const body = {
